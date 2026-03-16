@@ -267,17 +267,88 @@ h1 {
   color: var(--text-main);
   text-decoration: none;
   opacity: 0.6;
-  transition: opacity 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 100px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  opacity: 1;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
 .nav-link.active {
   opacity: 1;
-  color: var(--brand-orange);
+  color: #fff;
+  font-weight: 700;
+  background: rgba(255, 85, 0, 0.08);
 }
 
-.nav-link.active {
-  text-shadow: 0 0 10px rgba(255, 85, 0, 0.4);
+/* Atmospheric Smooth Glow Effect */
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  top: -12px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 85, 0, 0.4) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Slimmer, more elegant indicator */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--brand-orange);
+  opacity: 0.8;
+}
+
+/* Color-changing name effect */
+.animated-name {
+  background: linear-gradient(
+    to right,
+    #ff5500, /* var(--brand-orange) */
+    #c084fc, /* Purple glow */
+    #00f2ff, /* Cyan hero glow */
+    #ff5500
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s linear infinite, glow-pulse 4s ease-in-out infinite alternate;
+  display: inline-block;
+}
+
+@keyframes glow-pulse {
+  from { filter: drop-shadow(0 0 2px rgba(255, 85, 0, 0.2)); }
+  to { filter: drop-shadow(0 0 8px rgba(255, 85, 0, 0.6)); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
 .loader-screen {

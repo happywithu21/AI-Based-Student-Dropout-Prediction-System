@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 import Loader from './components/Loader';
 import Hero from './components/Hero';
@@ -14,8 +14,11 @@ function App() {
 
   const [activeSection, setActiveSection] = useState('about');
 
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.1, duration: 1.2, smoothWheel: true });
+    lenisRef.current = lenis;
     const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
 
@@ -46,6 +49,18 @@ function App() {
     };
   }, []);
 
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement && lenisRef.current) {
+      lenisRef.current.scrollTo(targetElement, {
+        offset: -90, // Match header height
+        duration: 2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) // Custom smooth easing
+      });
+    }
+  };
+
   return (
     <>
       <div className="grain-overlay" />
@@ -62,17 +77,17 @@ function App() {
         {/* Professional Floating Navigation */}
         <header className="header-nav">
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-            <div style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            <div className="animated-name" style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
               HARSHITA GOUR
             </div>
           </div>
 
           <nav style={{ display: 'flex', gap: '30px' }} className="desktop-only">
-            <a href="#about" className={`nav-link interactive ${activeSection === 'about' ? 'active' : ''}`}>ABOUT</a>
-            <a href="#skills" className={`nav-link interactive ${activeSection === 'skills' ? 'active' : ''}`}>SKILLS</a>
-            <a href="#certificates" className={`nav-link interactive ${activeSection === 'certificates' ? 'active' : ''}`}>CERTIFICATES</a>
-            <a href="#projects" className={`nav-link interactive ${activeSection === 'projects' ? 'active' : ''}`}>PROJECTS</a>
-            <a href="#contact" className={`nav-link interactive ${activeSection === 'contact' ? 'active' : ''}`}>CONTACT</a>
+            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`nav-link interactive ${activeSection === 'about' ? 'active' : ''}`}>ABOUT</a>
+            <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className={`nav-link interactive ${activeSection === 'skills' ? 'active' : ''}`}>SKILLS</a>
+            <a href="#certificates" onClick={(e) => handleNavClick(e, 'certificates')} className={`nav-link interactive ${activeSection === 'certificates' ? 'active' : ''}`}>CERTIFICATES</a>
+            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className={`nav-link interactive ${activeSection === 'projects' ? 'active' : ''}`}>PROJECTS</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`nav-link interactive ${activeSection === 'contact' ? 'active' : ''}`}>CONTACT</a>
           </nav>
         </header>
 
