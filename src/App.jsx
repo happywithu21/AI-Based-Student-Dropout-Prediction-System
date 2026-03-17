@@ -11,8 +11,8 @@ import './index.css';
 
 function App() {
   const [loading, setLoading] = useState(true);
-
   const [activeSection, setActiveSection] = useState('about');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const lenisRef = useRef(null);
 
@@ -51,6 +51,7 @@ function App() {
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
+    setIsMenuOpen(false); // Close mobile menu if open
     const targetElement = document.getElementById(targetId);
     if (targetElement && lenisRef.current) {
       lenisRef.current.scrollTo(targetElement, {
@@ -65,6 +66,17 @@ function App() {
     <>
       <div className="grain-overlay" />
       <Loader onComplete={() => setLoading(false)} />
+
+      {/* Mobile Menu Overlay */}
+      <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'center' }}>
+          <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`}>ABOUT</a>
+          <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className={`mobile-nav-link ${activeSection === 'skills' ? 'active' : ''}`}>SKILLS</a>
+          <a href="#certificates" onClick={(e) => handleNavClick(e, 'certificates')} className={`mobile-nav-link ${activeSection === 'certificates' ? 'active' : ''}`}>CERTIFICATES</a>
+          <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className={`mobile-nav-link ${activeSection === 'projects' ? 'active' : ''}`}>PROJECTS</a>
+          <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`}>CONTACT</a>
+        </nav>
+      </div>
 
       <div style={{
         opacity: loading ? 0 : 1,
@@ -89,22 +101,30 @@ function App() {
             <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className={`nav-link interactive ${activeSection === 'projects' ? 'active' : ''}`}>PROJECTS</a>
             <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`nav-link interactive ${activeSection === 'contact' ? 'active' : ''}`}>CONTACT</a>
           </nav>
+
+          <button 
+            className={`menu-toggle mobile-only ${isMenuOpen ? 'open' : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <span></span>
+          </button>
         </header>
 
         <main style={{ paddingTop: '90px', paddingBottom: '10vh' }}>
           <div id="about"><Hero /></div>
           <AboutSection />
 
-          <div style={{ height: '20vh' }} />
+          <div style={{ height: '10vh', minHeight: '100px' }} />
           <div id="skills"><Skills /></div>
 
-          <div style={{ height: '20vh' }} />
+          <div style={{ height: '10vh', minHeight: '100px' }} />
           <div id="certificates"><Certificates /></div>
 
-          <div style={{ height: '20vh' }} />
+          <div style={{ height: '10vh', minHeight: '100px' }} />
           <div id="projects"><Projects /></div>
 
-          <div style={{ height: '10vh' }} />
+          <div style={{ height: '5vh', minHeight: '50px' }} />
           <div id="contact"><Contact /></div>
         </main>
 

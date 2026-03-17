@@ -371,11 +371,23 @@ h1 {
   animation: pulse 2s infinite ease-in-out;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness & Layout Refinements */
+
+.mobile-only {
+  display: none;
+}
 
 @media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
   .container {
-    padding: 0 5vw;
+    padding: 0 6vw;
   }
 
   .data-card {
@@ -388,23 +400,16 @@ h1 {
   }
 
   .header-nav {
-    width: 94vw;
-    height: 54px;
-    padding: 0 1.5rem;
+    width: 92vw;
+    height: 60px;
+    padding: 0 1.2rem;
     top: 1rem;
+    border-radius: 20px;
   }
 
-  nav {
-    display: none !important;
-    /* Hide standard nav for a cleaner mobile look or we can make it scrollable */
-  }
-
-  .mobile-only {
-    display: block;
-  }
-
-  .desktop-only {
-    display: none;
+  h1 {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    line-height: 1.1;
   }
 
   .contact-form-side {
@@ -414,3 +419,80 @@ h1 {
     padding-top: 2rem;
   }
 }
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.98);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  transform: translateY(-100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.open {
+  transform: translateY(0);
+}
+
+.mobile-nav-link {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-main);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--brand-orange);
+  transform: scale(1.1);
+}
+
+.mobile-nav-link.active {
+  color: var(--brand-orange);
+}
+
+/* Hamburger Toggle */
+.menu-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+  transition: 0.3s;
+}
+
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transition: 0.3s;
+}
+
+.menu-toggle span::before { transform: translateY(-7px); }
+.menu-toggle span::after { transform: translateY(7px); }
+
+.menu-toggle.open span { background: transparent; }
+.menu-toggle.open span::before { transform: rotate(45deg); }
+.menu-toggle.open span::after { transform: rotate(-45deg); }

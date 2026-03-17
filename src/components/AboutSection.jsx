@@ -30,7 +30,7 @@ export default function AboutSection() {
                 <div style={{ height: '1px', width: '60px', background: 'var(--brand-orange)', margin: '1rem auto', opacity: 0.5 }} />
             </div>
 
-            <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4vw', alignItems: 'center' }}>
+            <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '8vh', alignItems: 'center' }}>
                 
                 {/* Left: Phrasing & Narrative */}
                 <motion.div

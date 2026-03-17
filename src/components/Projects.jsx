@@ -66,25 +66,25 @@ export default function Projects() {
 
     return (
         <section id="work" style={{ 
-            padding: '12vh 0', 
+            padding: '10vh 0', 
             background: '#0a0a0a', 
             overflow: 'hidden',
             position: 'relative',
-            minHeight: '100vh',
+            minHeight: '80vh',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center'
         }}>
             {/* Background Text */}
-            <div style={{ position: 'absolute', top: '5vh', left: '6vw', opacity: 0.05, zIndex: 0 }}>
+            <div className="desktop-only" style={{ position: 'absolute', top: '5vh', left: '6vw', opacity: 0.05, zIndex: 0 }}>
                 <h2 style={{ fontSize: '20vw', fontWeight: 900, margin: 0, color: '#fff' }}>WORK</h2>
             </div>
 
             <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ padding: '0 6vw', marginBottom: '6vh', textAlign: 'center' }}>
+                <div style={{ padding: '0 6vw', marginBottom: '4vh', textAlign: 'center' }}>
                     <span className="section-label" style={{ color: 'var(--brand-orange)', letterSpacing: '0.3em', fontSize: '10px' }}>PROUDLY PRESENTING</span>
                     <h2 style={{ 
-                        fontSize: '1.5rem', 
+                        fontSize: '1.2rem', 
                         fontWeight: 900, 
                         marginTop: '0.4rem',
                         color: '#fff',
@@ -98,7 +98,7 @@ export default function Projects() {
                 <div style={{ 
                     position: 'relative',
                     width: '100%',
-                    height: '650px',
+                    height: 'clamp(450px, 70vh, 600px)',
                     display: 'flex',
                     alignItems: 'center',
                     marginBottom: '2vh'
@@ -106,15 +106,15 @@ export default function Projects() {
                     <motion.div 
                         initial={false}
                         animate={{ 
-                            x: `calc(50vw - 210px - ${index * 500}px)`
+                            x: `calc(50vw - 150px - ${index * (window.innerWidth < 768 ? 320 : 500)}px)`
                         }}
                         transition={{ type: "spring", stiffness: 100, damping: 20 }}
                         style={{ 
                             display: 'flex', 
-                            gap: '80px',
+                            gap: window.innerWidth < 768 ? '20px' : '80px',
                             position: 'absolute',
                             left: 0,
-                            padding: '80px 0' 
+                            padding: '40px 0' 
                         }}
                     >
                         {projects.map((project, idx) => (
@@ -145,31 +145,33 @@ export default function Projects() {
 }
 
 function ProjectCard({ project, isActive }) {
+    const isMobile = window.innerWidth < 768;
+    
     return (
         <motion.div
             animate={{ 
-                scale: isActive ? 1.1 : 0.8,
+                scale: isActive ? 1.05 : 0.85,
                 opacity: isActive ? 1 : 0.15,
-                boxShadow: isActive ? `0 0 80px ${project.glow}` : '0 0 0px transparent'
+                boxShadow: isActive ? `0 0 60px ${project.glow}` : '0 0 0px transparent'
             }}
             transition={{ duration: 0.8, ease: "circOut" }}
             style={{
-                width: '420px',
+                width: isMobile ? '300px' : '420px',
                 flexShrink: 0,
                 background: 'rgba(238, 237, 228, 0.02)',
                 border: isActive ? '2px solid var(--brand-orange)' : '1px solid rgba(255,255,255,0.05)',
                 borderRadius: '24px',
-                padding: '2rem',
+                padding: '1.5rem',
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.2rem',
+                gap: '1rem',
                 backdropFilter: isActive ? 'blur(0px)' : 'blur(10px)',
             }}
         >
             <div style={{ 
                 width: '100%', 
-                height: '230px', 
+                height: isMobile ? '160px' : '230px', 
                 borderRadius: '16px', 
                 overflow: 'hidden',
                 background: '#000'
@@ -186,21 +188,21 @@ function ProjectCard({ project, isActive }) {
                 />
             </div>
             
-            <div style={{ marginTop: '1rem' }}>
-                <span className="mono" style={{ fontSize: '11px', color: 'var(--brand-orange)' }}>
+            <div style={{ marginTop: '0.5rem' }}>
+                <span className="mono" style={{ fontSize: '10px', color: 'var(--brand-orange)' }}>
                     {project.subtitle}
                 </span>
                 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
-                    <h3 style={{ fontSize: '2rem', fontWeight: 900, textTransform: 'uppercase', margin: 0 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.4rem' }}>
+                    <h3 style={{ fontSize: isMobile ? '1.4rem' : '1.8rem', fontWeight: 900, textTransform: 'uppercase', margin: 0 }}>
                         {project.title}
                     </h3>
-                    <ArrowUpRight size={24} style={{ opacity: isActive ? 1 : 0 }} />
+                    {!isMobile && <ArrowUpRight size={24} style={{ opacity: isActive ? 1 : 0 }} />}
                 </div>
 
-                <div style={{ display: 'flex', gap: '8px', marginTop: '1.5rem' }}>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '1rem', flexWrap: 'wrap' }}>
                     {project.tech.map((t, i) => (
-                        <span key={i} className="mono" style={{ fontSize: '10px', padding: '5px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <span key={i} className="mono" style={{ fontSize: '9px', padding: '4px 10px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
                             {t}
                         </span>
                     ))}

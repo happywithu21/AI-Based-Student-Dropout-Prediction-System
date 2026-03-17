@@ -18,16 +18,16 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={containerRef} className="dot-grid" style={{ minHeight: '85vh', display: 'flex', alignItems: 'flex-start' }}>
+        <section ref={containerRef} className="dot-grid" style={{ minHeight: '85vh', display: 'flex', alignItems: 'flex-start', padding: '0 0 5vh 0' }}>
 
             <div className="container" style={{
                 zIndex: 10,
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '4vw',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '8vh',
                 alignItems: 'center',
-                paddingTop: '4vh', 
-                paddingBottom: '5vh'
+                paddingTop: 'clamp(2rem, 10vh, 12vh)', 
+                paddingBottom: '2vh'
             }}>
 
                 {/* Left: Professional Bio & Identity */}
