@@ -103,28 +103,35 @@ export default function Projects() {
                     alignItems: 'center',
                     marginBottom: '2vh'
                 }}>
-                    <motion.div 
-                        initial={false}
-                        animate={{ 
-                            x: `calc(50vw - 150px - ${index * (window.innerWidth < 768 ? 320 : 500)}px)`
-                        }}
-                        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                        style={{ 
-                            display: 'flex', 
-                            gap: window.innerWidth < 768 ? '20px' : '80px',
-                            position: 'absolute',
-                            left: 0,
-                            padding: '40px 0' 
-                        }}
-                    >
-                        {projects.map((project, idx) => (
-                            <ProjectCard 
-                                key={idx} 
-                                project={project} 
-                                isActive={idx === index} 
-                            />
-                        ))}
-                    </motion.div>
+                    {(() => {
+                        const isMobile = window.innerWidth < 768;
+                        const cardWidth = isMobile ? 300 : 420;
+                        const cardGap = isMobile ? 20 : 80;
+                        const step = cardWidth + cardGap;
+                        const offset = `calc(50vw - ${cardWidth / 2}px - ${index * step}px)`;
+                        return (
+                            <motion.div 
+                                initial={false}
+                                animate={{ x: offset }}
+                                transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                                style={{ 
+                                    display: 'flex', 
+                                    gap: `${cardGap}px`,
+                                    position: 'absolute',
+                                    left: 0,
+                                    padding: '40px 0' 
+                                }}
+                            >
+                                {projects.map((project, idx) => (
+                                    <ProjectCard 
+                                        key={idx} 
+                                        project={project} 
+                                        isActive={idx === index} 
+                                    />
+                                ))}
+                            </motion.div>
+                        );
+                    })()}
                 </div>
 
                 {/* Pagination / Index Indicator */}

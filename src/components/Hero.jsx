@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import harshitaPhoto from '../assets/harshita_photo.png';
 
 export default function Hero() {
     const containerRef = useRef(null);
@@ -18,144 +19,186 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={containerRef} className="dot-grid" style={{ minHeight: '85vh', display: 'flex', alignItems: 'flex-start', padding: '0 0 5vh 0' }}>
+        <section
+            ref={containerRef}
+            className="dot-grid"
+            style={{
+                height: 'calc(100vh - 90px)',
+                padding: '3vh 4vw',
+                display: 'flex',
+                alignItems: 'stretch',
+                boxSizing: 'border-box',
+                position: 'relative',
+                overflow: 'hidden'
+            }}
+        >
+            {/* ── The One Big Card ── */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                className="data-card glow-hero"
+                style={{
+                    flex: 1,
+                    borderRadius: '20px',
+                    padding: 'clamp(1.2rem, 2.5vw, 2.5rem)',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gridTemplateRows: '1fr 140px',
+                    gap: '1rem 3rem',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '--glow-primary': 'var(--brand-orange)',
+                }}
+            >
+                {/* Floating Particles */}
+                <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
+                    {[...Array(8)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            animate={{ y: [0, -50, 0], opacity: [0.05, 0.3, 0.05] }}
+                            transition={{ duration: 4 + i * 0.6, repeat: Infinity, delay: i * 0.5 }}
+                            style={{
+                                position: 'absolute',
+                                width: '2px', height: '2px',
+                                borderRadius: '50%',
+                                background: i % 2 === 0 ? 'var(--brand-orange)' : '#00f2ff',
+                                left: `${12 * i + 5}%`,
+                                top: `${8 * i + 10}%`
+                            }}
+                        />
+                    ))}
+                </div>
 
-            <div className="container" style={{
-                zIndex: 10,
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                gap: '8vh',
-                alignItems: 'center',
-                paddingTop: 'clamp(2rem, 10vh, 12vh)', 
-                paddingBottom: '2vh'
-            }}>
-
-                {/* Left: Professional Bio & Identity */}
+                {/* ── TOP-LEFT: Introduction ── */}
                 <motion.div
-                    initial={{ opacity: 0, x: -50 }}
+                    initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ position: 'relative', zIndex: 2 }}
                 >
                     <span className="section-label">INTRODUCTION</span>
-                    <h1 style={{ marginBottom: '2rem' }}>
+                    <h1 style={{ marginTop: '0.6rem', marginBottom: '1rem', fontSize: 'clamp(2rem, 4vw, 4rem)' }}>
                         HARSHITA<br />
                         <span style={{ color: 'var(--brand-orange)' }}>GOUR.</span>
                     </h1>
-                    <p style={{ fontSize: '1.1rem', lineHeight: 1.6, maxWidth: '500px', opacity: 0.8 }}>
-                        Data Science student & Full Stack Developer at LPU, passionate about building intelligent data solutions and solving complex engineering problems.
+                    <p style={{ fontSize: '1rem', lineHeight: 1.8, maxWidth: '420px', opacity: 0.75 }}>
+                        Data Science student &amp; Full Stack Developer at LPU, passionate about building intelligent data solutions and solving complex engineering problems.
                     </p>
 
-                    <div style={{ marginTop: '3rem', display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+                    <div style={{ marginTop: '2.5rem', display: 'flex', gap: '2.5rem', flexWrap: 'wrap' }}>
                         <div>
-                            <span className="mono" style={{ fontSize: '10px', opacity: 0.4, display: 'block', marginBottom: '0.5rem' }}>LOCATION</span>
+                            <span className="mono" style={{ fontSize: '10px', opacity: 0.4, display: 'block', marginBottom: '0.4rem' }}>LOCATION</span>
                             <span className="mono" style={{ fontSize: '12px' }}>PUNJAB, INDIA</span>
                         </div>
                         <div>
-                            <span className="mono" style={{ fontSize: '10px', opacity: 0.4, display: 'block', marginBottom: '0.5rem' }}>FOCUS</span>
-                            <span className="mono" style={{ fontSize: '12px' }}>DATA SCIENCE & ML</span>
+                            <span className="mono" style={{ fontSize: '10px', opacity: 0.4, display: 'block', marginBottom: '0.4rem' }}>FOCUS</span>
+                            <span className="mono" style={{ fontSize: '12px' }}>DATA SCIENCE &amp; ML</span>
                         </div>
                     </div>
                 </motion.div>
 
-                {/* Right: Technical Metadata Panel */}
+                {/* ── TOP-RIGHT: Technical Overview ── */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ 
-                        rotateY: 5, 
-                        rotateX: -5,
-                        transition: { duration: 0.3 }
-                    }}
-                    transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="data-card glow-hero"
-                    style={{ marginTop: '2rem', perspective: '1000px', transformStyle: 'preserve-3d' }}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ position: 'relative', zIndex: 2 }}
                 >
                     <span className="section-label">TECHNICAL OVERVIEW</span>
 
-                    {/* Interactive Background Particles */}
-                    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
-                        {[...Array(6)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                animate={{ 
-                                    y: [0, -40, 0],
-                                    x: [0, Math.random() * 20 - 10, 0],
-                                    opacity: [0.1, 0.4, 0.1] 
-                                }}
-                                transition={{ 
-                                    duration: 3 + Math.random() * 2, 
-                                    repeat: Infinity,
-                                    delay: Math.random() * 2
-                                }}
-                                style={{ 
-                                    position: 'absolute',
-                                    width: '2px', height: '2px',
-                                    borderRadius: '50%',
-                                    background: i % 2 === 0 ? 'var(--brand-orange)' : '#00f2ff',
-                                    left: `${Math.random() * 100}%`,
-                                    top: `${Math.random() * 100}%`
-                                }}
-                            />
-                        ))}
-                    </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', position: 'relative', zIndex: 2 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginTop: '0.8rem' }}>
                         {[
                             { label: 'STATUS', value: 'OPEN FOR WORK', color: '#00ff00' },
                             { label: 'STACK', value: 'PYTHON / SQL / REACT', color: 'var(--text-main)' },
                             { label: 'DOMAIN', value: 'DATA SCIENCE', color: 'var(--brand-orange)' },
                             { label: 'AVAILABILITY', value: 'REMOTE / HYBRID', color: 'var(--text-main)' }
                         ].map((item, i) => (
-                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(238,237,228,0.1)', paddingBottom: '0.5rem', gap: '1rem' }}>
-                                <span className="mono" style={{ fontSize: '10px', opacity: 0.5 }}>{item.label}</span>
-                                <span className="mono" style={{ fontSize: '10px', color: item.color, textAlign: 'right' }}>{item.value}</span>
+                            <div key={i} style={{
+                                display: 'flex', justifyContent: 'space-between',
+                                borderBottom: '1px solid rgba(238,237,228,0.08)',
+                                paddingBottom: '0.7rem', gap: '1rem'
+                            }}>
+                                <span className="mono" style={{ fontSize: '11px', opacity: 0.5 }}>{item.label}</span>
+                                <span className="mono" style={{ fontSize: '11px', color: item.color, textAlign: 'right' }}>{item.value}</span>
                             </div>
                         ))}
                     </div>
 
-                    {/* Live Data Science Visualizer */}
-                    <div style={{ marginTop: '2rem', padding: '1rem', background: 'rgba(0,0,0,0.5)', borderRadius: '8px', border: '1px solid rgba(255,85,0,0.2)', position: 'relative', zIndex: 2 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                    {/* Neural Log */}
+                    <div style={{ marginTop: '1rem', padding: '0.8rem', background: 'rgba(0,0,0,0.5)', borderRadius: '10px', border: '1px solid rgba(255,85,0,0.2)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
                             <span className="mono" style={{ fontSize: '9px', opacity: 0.4 }}>NEURAL_ENGINE_ACTIVE</span>
                             <div style={{ display: 'flex', gap: '4px' }}>
-                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#00ff00' }}></div>
-                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#ff5500', animationDelay: '0.2s' }}></div>
-                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#00f2ff', animationDelay: '0.4s' }}></div>
+                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#00ff00' }} />
+                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#ff5500', animationDelay: '0.2s' }} />
+                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#00f2ff', animationDelay: '0.4s' }} />
                             </div>
                         </div>
-
-                        <div className="mono" style={{ fontSize: '10px', height: '60px', overflow: 'hidden', opacity: 0.6, position: 'relative' }}>
+                        <div className="mono" style={{ fontSize: '10px', height: '45px', overflow: 'hidden', opacity: 0.6 }}>
                             <motion.div
-                                animate={{ y: [-150, 0] }}
+                                animate={{ y: [-180, 0] }}
                                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                                style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
+                                style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}
                             >
                                 {[
-                                    '> INITIALIZING_NEURAL_WEIGHTS...',
-                                    '> FETCHING_DATASET_CLUSTER_09',
-                                    '> OPTIMIZING_GRADIENT_DESCENT',
-                                    '> MODEL_RECALL: 0.982',
-                                    '> SCRAPING_REAL_TIME_TRENDS',
-                                    '> UPDATING_BRAIN_LATENCY...',
-                                    '> PARSING_SYNTACTIC_SCHEMA',
                                     '> VECTORIZING_USER_INPUT',
                                     '> CROSS_VALIDATION_ACTIVE',
-                                    '> REINFORCEMENT_LEARNING_RUNNING'
+                                    '> REINFORCEMENT_LEARNING_RUNNING',
+                                    '> MODEL_RECALL: 0.982',
+                                    '> SCRAPING_REAL_TIME_TRENDS',
+                                    '> OPTIMIZING_GRADIENT_DESCENT',
+                                    '> NEURAL_WEIGHTS_INITIALIZED'
                                 ].map((log, i) => (
                                     <span key={i} style={{ color: i % 3 === 0 ? 'var(--brand-orange)' : i % 3 === 1 ? '#00f2ff' : 'var(--text-main)' }}>{log}</span>
                                 ))}
                             </motion.div>
                         </div>
                     </div>
-
                 </motion.div>
 
-            </div>
+
+                {/* ── Photo: absolutely anchored to card bottom ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.8 }}
+                    style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: '33%',
+                        transform: 'translateX(-50%)',
+                        width: '230px',
+                        height: '68%',
+                        zIndex: 3,
+                        overflow: 'hidden',
+                        maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
+                        filter: 'drop-shadow(0 -8px 24px rgba(255,85,0,0.25)) drop-shadow(0 4px 16px rgba(0,0,0,0.5))',
+                    }}
+                >
+                    <img
+                        src={harshitaPhoto}
+                        alt="Harshita Gour"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            objectPosition: 'top center',
+                            display: 'block',
+                            mixBlendMode: 'multiply',
+                            filter: 'contrast(1.05) brightness(1.02)',
+                        }}
+                    />
+                </motion.div>
+
+
+            </motion.div>
 
             {/* Reactive Glow Follower */}
             <div style={{
-                position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none',
-                background: `radial-gradient(600px circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, rgba(255, 85, 0, 0.03), transparent 70%)`
+                position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+                background: `radial-gradient(700px circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, rgba(255, 85, 0, 0.04), transparent 70%)`
             }} />
         </section>
     );
