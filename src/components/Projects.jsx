@@ -39,6 +39,8 @@ const projects = [
 ];
 
 export default function Projects() {
+    const [index, setIndex] = useState(0);
+    const [isMovingForward, setIsMovingForward] = useState(true);
     const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
     useEffect(() => {
