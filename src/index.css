@@ -85,56 +85,33 @@ body {
 
 /* Intensive Glow & Rim Light System */
 /* Dynamic Revolving Border & Glow System */
+/* Minimal Cyber-Frame Design */
 .data-card {
-  background: #0a0a0a;
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(238, 237, 228, 0.08); /* Fixed minimal border */
   padding: 2rem;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   border-radius: 12px;
-  /* Hidden overflow to clip the rotating gradient */
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Base content layer to sit above the gradient */
-.data-card > * {
-  position: relative;
-  z-index: 2;
+.data-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--glow-primary, var(--brand-orange));
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.5),
+    0 0 20px -5px var(--glow-primary, var(--brand-orange));
 }
 
-/* The Revolving Gradient Layer */
-.data-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    transparent, 
-    var(--glow-primary, var(--brand-orange)), 
-    var(--glow-secondary, #c084fc), 
-    transparent 30%
-  );
-  animation: rotate 4s linear infinite;
-  z-index: 1;
-}
-
-/* Dark center mask to create the "border" effect */
-.data-card::after {
-  content: '';
-  position: absolute;
-  inset: 2px; /* Border thickness */
-  background: #0a0a0a;
-  border-radius: 10px;
-  z-index: 1;
-  transition: background 0.3s ease;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Remove the heavy pseudo-elements */
+.data-card::before, .data-card::after {
+  display: none;
 }
 
 /* Persistent Outer Glow */
@@ -150,6 +127,12 @@ body {
   box-shadow: 0 0 25px -5px rgba(192, 132, 252, 0.3);
 }
 
+.glow-blue {
+  --glow-primary: #3b82f6;
+  --glow-secondary: #00f2ff;
+  box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.3);
+}
+
 /* Intensify on Hover */
 .data-card:hover {
   transform: translateY(-8px);
@@ -161,6 +144,10 @@ body {
 
 .glow-purple:hover {
   box-shadow: 0 0 45px -5px rgba(192, 132, 252, 0.5);
+}
+
+.glow-blue:hover {
+  box-shadow: 0 0 45px -5px rgba(59, 130, 246, 0.5);
 }
 
 .data-card:hover::after {
@@ -314,11 +301,18 @@ h1 {
   opacity: 1;
   color: #fff;
   font-weight: 700;
+}
+
+.nav-active-pill {
+  position: absolute;
+  inset: 0;
   background: rgba(255, 85, 0, 0.08);
+  border-radius: 100px;
+  z-index: -1;
 }
 
 /* Atmospheric Smooth Glow Effect */
-.nav-link.active::before {
+.nav-active-pill::before {
   content: '';
   position: absolute;
   top: -12px; 
@@ -338,7 +332,7 @@ h1 {
 }
 
 /* Slimmer, more elegant indicator */
-.nav-link.active::after {
+.nav-active-pill::after {
   content: '';
   position: absolute;
   top: 0;

@@ -3,14 +3,17 @@ import { Mail, Github, Linkedin, MessageSquare, Send } from 'lucide-react';
 
 export default function Contact() {
     return (
-        <section className="container" id="contact" style={{ padding: 'clamp(5vh, 10vh, 15vh) 0 clamp(5vh, 10vh, 10vh) 0' }}>
+        <section className="container" id="contact" style={{ padding: 'clamp(5vh, 10vh, 15vh) 2.5vw clamp(5vh, 10vh, 10vh) 2.5vw' }}>
             <div className="dot-grid data-card" style={{
                 padding: 'clamp(2rem, 5vw, 6rem)',
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                 gap: '6vw',
                 background: 'rgba(255, 85, 0, 0.02)',
-                borderColor: 'rgba(255, 85, 0, 0.2)'
+                borderColor: 'rgba(255, 85, 0, 0.2)',
+                maxWidth: '1300px',
+                margin: '0 auto',
+                borderRadius: '20px',
             }}>
 
                 {/* Left Side: Messaging */}

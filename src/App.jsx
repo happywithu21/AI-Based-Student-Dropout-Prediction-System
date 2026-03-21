@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
+import { motion } from 'framer-motion';
 import Loader from './components/Loader';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
@@ -62,6 +63,14 @@ function App() {
     }
   };
 
+  const navItems = [
+    { id: 'about', label: 'ABOUT' },
+    { id: 'skills', label: 'SKILLS' },
+    { id: 'certificates', label: 'CERTIFICATES' },
+    { id: 'projects', label: 'PROJECTS' },
+    { id: 'contact', label: 'CONTACT' },
+  ];
+
   return (
     <>
       <div className="grain-overlay" />
@@ -70,11 +79,16 @@ function App() {
       {/* Mobile Menu Overlay */}
       <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'center' }}>
-          <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`}>ABOUT</a>
-          <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className={`mobile-nav-link ${activeSection === 'skills' ? 'active' : ''}`}>SKILLS</a>
-          <a href="#certificates" onClick={(e) => handleNavClick(e, 'certificates')} className={`mobile-nav-link ${activeSection === 'certificates' ? 'active' : ''}`}>CERTIFICATES</a>
-          <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className={`mobile-nav-link ${activeSection === 'projects' ? 'active' : ''}`}>PROJECTS</a>
-          <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`}>CONTACT</a>
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => handleNavClick(e, item.id)}
+              className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
       </div>
 
@@ -94,12 +108,28 @@ function App() {
             </div>
           </div>
 
-          <nav style={{ display: 'flex', gap: '30px' }} className="desktop-only">
-            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`nav-link interactive ${activeSection === 'about' ? 'active' : ''}`}>ABOUT</a>
-            <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className={`nav-link interactive ${activeSection === 'skills' ? 'active' : ''}`}>SKILLS</a>
-            <a href="#certificates" onClick={(e) => handleNavClick(e, 'certificates')} className={`nav-link interactive ${activeSection === 'certificates' ? 'active' : ''}`}>CERTIFICATES</a>
-            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className={`nav-link interactive ${activeSection === 'projects' ? 'active' : ''}`}>PROJECTS</a>
-            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`nav-link interactive ${activeSection === 'contact' ? 'active' : ''}`}>CONTACT</a>
+          <nav style={{ display: 'flex', gap: '8px' }} className="desktop-only">
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleNavClick(e, item.id)}
+                className={`nav-link interactive ${activeSection === item.id ? 'active' : ''}`}
+              >
+                {item.label}
+                {activeSection === item.id && (
+                  <motion.div
+                    layoutId="nav-pill"
+                    className="nav-active-pill"
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30
+                    }}
+                  />
+                )}
+              </a>
+            ))}
           </nav>
 
           <button 
