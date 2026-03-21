@@ -39,10 +39,12 @@ const projects = [
 ];
 
 export default function Projects() {
-    const [index, setIndex] = useState(0);
-    const [isMovingForward, setIsMovingForward] = useState(true);
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
     useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        
         const interval = setInterval(() => {
             setIndex((prev) => {
                 if (isMovingForward) {
@@ -59,9 +61,12 @@ export default function Projects() {
                     return prev - 1;
                 }
             });
-        }, 5000); // 4-5 second pause + 1 second transition total roughly
+        }, 5000); 
 
-        return () => clearInterval(interval);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearInterval(interval);
+        };
     }, [isMovingForward]);
 
     return (
@@ -104,7 +109,7 @@ export default function Projects() {
                     marginBottom: '2vh'
                 }}>
                     {(() => {
-                        const isMobile = window.innerWidth < 768;
+                        const isMobile = windowWidth < 768;
                         const cardWidth = isMobile ? 300 : 420;
                         const cardGap = isMobile ? 20 : 80;
                         const step = cardWidth + cardGap;
@@ -152,7 +157,7 @@ export default function Projects() {
 }
 
 function ProjectCard({ project, isActive }) {
-    const isMobile = window.innerWidth < 768;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     
     return (
         <motion.div

@@ -23,13 +23,14 @@ export default function Hero() {
             ref={containerRef}
             className="dot-grid"
             style={{
-                height: 'calc(100vh - 90px)',
+                minHeight: 'calc(100vh - 90px)',
+                height: 'auto',
                 padding: '3vh 4vw',
                 display: 'flex',
-                alignItems: 'stretch',
+                alignItems: 'center',
                 boxSizing: 'border-box',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'visible' // Ensure nested elements (HUD) aren't clipped
             }}
         >
             {/* ── The One Big Card ── */}
@@ -37,18 +38,16 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-                className="data-card glow-hero"
+                className="data-card glow-hero hero-card-grid"
                 style={{
                     flex: 1,
                     borderRadius: '20px',
-                    padding: 'clamp(1.2rem, 2.5vw, 2.5rem)',
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gridTemplateRows: '1fr 140px',
-                    gap: '1rem 3rem',
+                    padding: 'clamp(1.5rem, 5vw, 3.5rem)',
                     position: 'relative',
-                    overflow: 'hidden',
-                    '--glow-primary': 'var(--brand-orange)',
+                    overflow: 'visible', // HUD pop-outs need this
+                    minHeight: '80vh',
+                    background: 'rgba(10, 10, 10, 0.7)',
+                    alignContent: 'center'
                 }}
             >
                 {/* Floating Particles */}
@@ -99,7 +98,7 @@ export default function Hero() {
                 </motion.div>
 
                 {/* Right: Visuals & Technical Metadata Panel */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <div className="hero-right-col">
                     
                     {/* Profile Image Highlight: Next-Gen Pop-out Glass HUD */}
                     <motion.div 
