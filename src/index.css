@@ -27,15 +27,43 @@
 
 body {
   background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(ellipse at top left, rgba(255, 85, 0, 0.06) 0%, transparent 40%),
+    radial-gradient(ellipse at bottom right, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(192, 132, 252, 0.03) 0%, transparent 40%);
+  background-attachment: fixed;
   color: var(--text-main);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Data-Science Aesthetic: Dot Grid */
+/* Data-Science Aesthetic: Neural Blueprint Grid */
 .dot-grid {
-  background-image: radial-gradient(rgba(238, 237, 228, 0.05) 1px, transparent 0);
-  background-size: 30px 30px;
+  position: relative;
+  /* Intersecting paths and neural nodes simulation */
+  background-image: 
+    radial-gradient(rgba(0, 242, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(rgba(255, 85, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 85, 0, 0.03) 1px, transparent 1px);
+  background-size: 
+    40px 40px,   /* Neural nodes */
+    40px 40px,   /* Fine horizontal data paths */
+    40px 40px,   /* Fine vertical data paths */
+    200px 200px, /* Major architectural blocks */
+    200px 200px;
+  background-position: center top;
+}
+
+/* Fades out the grid at the edges of the section */
+.dot-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 0%, var(--bg-color) 80%);
+  z-index: 0; 
 }
 
 .grain-overlay {
@@ -46,8 +74,8 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.2;
-  background-image: url("https://framerusercontent.com/images/nfauNhlOo2KJhNyZZF9zh56jAGE.webp");
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Updated Glow & Glass Cards */

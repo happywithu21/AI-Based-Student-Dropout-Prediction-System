@@ -57,19 +57,162 @@ export default function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Right: Technical Metadata Panel */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ 
-                        rotateY: 5, 
-                        rotateX: -5,
-                        transition: { duration: 0.3 }
-                    }}
-                    transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="data-card glow-hero"
-                    style={{ marginTop: '2rem', perspective: '1000px', transformStyle: 'preserve-3d' }}
-                >
+                {/* Right: Visuals & Technical Metadata Panel */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                    
+                    {/* Profile Image Highlight: Next-Gen Pop-out Glass HUD */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        style={{ position: 'relative', marginTop: '1rem', display: 'flex', justifyContent: 'center', perspective: '1000px', width: '100%', maxWidth: '420px', margin: '0 auto' }}
+                    >
+                        
+                        {/* The Glassmorphism Pedestal Card with Continuous Hover */}
+                        <motion.div
+                            animate={{ y: [0, -8, 0] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                            style={{
+                                position: 'absolute',
+                                bottom: 0,
+                                left: '0',
+                                right: '0',
+                                height: '65%', 
+                                borderRadius: '24px',
+                                background: 'linear-gradient(135deg, rgba(20,20,20,0.6) 0%, rgba(10,10,10,0.9) 100%)',
+                                border: '1px solid rgba(255, 85, 0, 0.3)',
+                                borderTopColor: 'rgba(255, 85, 0, 0.8)',
+                                backdropFilter: 'blur(16px)',
+                                WebkitBackdropFilter: 'blur(16px)',
+                                boxShadow: '0 30px 50px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,85,0,0.1)',
+                                zIndex: 1,
+                                overflow: 'hidden'
+                            }}
+                        >
+                            {/* Scanning beam effect inside pedestal */}
+                            <motion.div
+                                animate={{ top: ['-50%', '150%'] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+                                style={{
+                                    position: 'absolute',
+                                    left: 0, right: 0,
+                                    height: '2px',
+                                    background: 'linear-gradient(90deg, transparent, rgba(255,85,0,0.8), transparent)',
+                                    boxShadow: '0 0 10px rgba(255,85,0,0.5)'
+                                }}
+                            />
+                        </motion.div>
+
+                        {/* Spinning Tech Halo rings behind the person */}
+                        <motion.div 
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+                            style={{
+                                position: 'absolute',
+                                top: '15%',
+                                width: '180px',
+                                height: '180px',
+                                borderRadius: '50%',
+                                border: '1px dashed rgba(255,85,0,0.4)',
+                                borderLeft: '2px solid rgba(0,242,255,0.6)',
+                                borderRight: '2px solid rgba(255,85,0,0.6)',
+                                boxSizing: 'border-box',
+                                zIndex: 1
+                            }}
+                        />
+                        <motion.div 
+                            animate={{ rotate: -360 }}
+                            transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
+                            style={{
+                                position: 'absolute',
+                                top: '10%',
+                                width: '220px',
+                                height: '220px',
+                                borderRadius: '50%',
+                                border: '1px dotted rgba(0,242,255,0.3)',
+                                zIndex: 1
+                            }}
+                        />
+                        
+                        {/* The Cutout Image (Foreground Pop-out with hover sync) */}
+                        <motion.div
+                            animate={{ y: [0, -12, 0] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                            style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'center', width: '100%' }}
+                        >
+                            <img 
+                                src="/profile3.png" 
+                                alt="Harshita Gour" 
+                                style={{
+                                    width: '80%',
+                                    maxWidth: '300px',
+                                    height: 'auto',
+                                    objectFit: 'contain',
+                                    objectPosition: 'center top',
+                                    filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.8)) drop-shadow(0 0 10px rgba(255,85,0,0.2)) contrast(1.1)',
+                                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
+                                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)'
+                                }}
+                            />
+                        </motion.div>
+
+                        {/* Foreground glowing floating HUD badges */}
+                        <motion.div
+                            animate={{ y: [0, -10, 0], opacity: [0.6, 1, 0.6] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                            className="mono"
+                            style={{
+                                position: 'absolute',
+                                bottom: '10%',
+                                right: '-10%',
+                                background: 'rgba(0,0,0,0.8)',
+                                border: '1px solid var(--brand-orange)',
+                                padding: '4px 8px',
+                                borderRadius: '4px',
+                                fontSize: '10px',
+                                color: 'var(--brand-orange)',
+                                zIndex: 3,
+                                backdropFilter: 'blur(4px)',
+                                boxShadow: '0 0 10px rgba(255,85,0,0.2)'
+                            }}
+                        >
+                            SYS_READY
+                        </motion.div>
+                        <motion.div
+                            animate={{ y: [0, 10, 0], opacity: [0.6, 1, 0.6] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                            className="mono"
+                            style={{
+                                position: 'absolute',
+                                top: '25%',
+                                left: '-10%',
+                                background: 'rgba(0,0,0,0.8)',
+                                border: '1px solid #00f2ff',
+                                padding: '4px 8px',
+                                borderRadius: '4px',
+                                fontSize: '10px',
+                                color: '#00f2ff',
+                                zIndex: 3,
+                                backdropFilter: 'blur(4px)',
+                                boxShadow: '0 0 10px rgba(0,242,255,0.2)'
+                            }}
+                        >
+                            DATA_SYNC
+                        </motion.div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        whileHover={{ 
+                            rotateY: 5, 
+                            rotateX: -5,
+                            transition: { duration: 0.3 }
+                        }}
+                        transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="data-card glow-hero"
+                        style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
+                    >
                     <span className="section-label">TECHNICAL OVERVIEW</span>
 
                     {/* Interactive Background Particles */}
@@ -149,6 +292,7 @@ export default function Hero() {
                     </div>
 
                 </motion.div>
+                </div>
 
             </div>
 
