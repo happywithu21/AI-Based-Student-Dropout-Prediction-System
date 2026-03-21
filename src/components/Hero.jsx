@@ -308,40 +308,6 @@ export default function Hero() {
                 </div>
 
 
-                {/* ── Photo: absolutely anchored to card bottom ── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2, delay: 0.8 }}
-                    style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: '33%',
-                        transform: 'translateX(-50%)',
-                        width: '230px',
-                        height: '68%',
-                        zIndex: 3,
-                        overflow: 'hidden',
-                        maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
-                        WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
-                        filter: 'drop-shadow(0 -8px 24px rgba(255,85,0,0.25)) drop-shadow(0 4px 16px rgba(0,0,0,0.5))',
-                    }}
-                >
-                    <img
-                        src={harshitaPhoto}
-                        alt="Harshita Gour"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            objectPosition: 'top center',
-                            display: 'block',
-                            mixBlendMode: 'multiply',
-                            filter: 'contrast(1.05) brightness(1.02)',
-                        }}
-                    />
-                </motion.div>
-
 
             </motion.div>
 
