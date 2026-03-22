@@ -1,0 +1,17 @@
+# Ignore node_modules for both frontend and backend
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Ignore frontend build files until Stage 1 is complete
+dist/
+build/
+
+# Ignore local dev logs and errors
+dev_error.txt
+tunnel_out.txt
+
+# Ignore git
+.git/
+.github/

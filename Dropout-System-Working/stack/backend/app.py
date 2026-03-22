@@ -24,8 +24,17 @@ except ImportError as e:
     print(f"WARNING: ML Pipeline not found: {e}")
     ML_AVAILABLE = False
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
 CORS(app)
+
+# Serve Frontend
+@app.route("/")
+def serve():
+    return app.send_static_file('index.html')
+
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
 
 # Initialize ML components
 if ML_AVAILABLE:

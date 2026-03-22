@@ -1,4 +1,14 @@
+---
+title: AI Student Dropout Prediction System
+emoji: 🎓
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # 🤖 AI-Based Student Dropout Prediction System (SIH 2025)
+
 
 **A high-performance, AI-powered system designed to predict student dropouts and provide actionable counseling insights. Built with React, Flask, and advanced Machine Learning models.**
 
