@@ -96,6 +96,85 @@ export default function Hero() {
                             <span className="mono" style={{ fontSize: '12px' }}>DATA SCIENCE &amp; ML</span>
                         </div>
                     </div>
+
+                    {/* CV Buttons */}
+                    <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <a
+                            href="/CVHarshitaGour.pdf"
+                            download="Harshita_Gour_CV.pdf"
+                            className="interactive mono"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                padding: '0.85rem 2rem',
+                                background: 'var(--brand-orange)',
+                                color: '#000',
+                                border: 'none',
+                                borderRadius: '8px',
+                                fontSize: '12px',
+                                fontWeight: 900,
+                                textDecoration: 'none',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.08em',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                boxShadow: '0 0 20px rgba(255,85,0,0.3)'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.target.style.boxShadow = '0 0 30px rgba(255,85,0,0.5)';
+                                e.target.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.boxShadow = '0 0 20px rgba(255,85,0,0.3)';
+                                e.target.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            DOWNLOAD CV
+                        </a>
+                        <a
+                            href="/CVHarshitaGour.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="interactive mono"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                padding: '0.85rem 2rem',
+                                background: 'transparent',
+                                color: 'var(--brand-orange)',
+                                border: '1px solid var(--brand-orange)',
+                                borderRadius: '8px',
+                                fontSize: '12px',
+                                fontWeight: 900,
+                                textDecoration: 'none',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.08em',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.target.style.background = 'rgba(255,85,0,0.1)';
+                                e.target.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.background = 'transparent';
+                                e.target.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            VIEW CV
+                        </a>
+                    </div>
                 </motion.div>
 
                 {/* Right: Visuals & Technical Metadata Panel */}

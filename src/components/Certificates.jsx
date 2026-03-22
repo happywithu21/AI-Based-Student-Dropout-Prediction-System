@@ -9,7 +9,6 @@ const certs = [
         title: 'PYTHON PROGRAMMING',
         issuer: 'PROFESSIONAL CERTIFICATION',
         file: '/certs/cert_python.pdf',
-        preview: '/certs/cert_python.pdf',
         status: 'VERIFIED_RECORD'
     },
     {
@@ -17,7 +16,6 @@ const certs = [
         title: 'FROM DATA TO INSIGHTS',
         issuer: 'ANALYTICS SPECIALIZATION',
         file: '/certs/cert_insights.pdf',
-        preview: '/certs/cert_insights.pdf',
         status: 'SYSTEM_VALIDATED'
     },
     {
@@ -25,7 +23,6 @@ const certs = [
         title: 'PRIVACY & SECURITY',
         issuer: 'CYBER SECURITY SPECIALIZATION',
         file: '/certs/Privacy and Security in Online Social Media.pdf',
-        preview: '/certs/Privacy and Security in Online Social Media.pdf',
         status: 'SYSTEM_VALIDATED'
     }
 ];
@@ -70,27 +67,37 @@ export default function Certificates() {
                             height: '100%'
                         }}
                     >
-                        {/* Certificate Preview Image */}
+                        {/* Certificate Preview — Embedded PDF */}
                         <div style={{ 
                             width: '100%', 
                             height: '240px', 
                             overflow: 'hidden',
                             position: 'relative',
-                            background: '#151515',
+                            background: '#f5f5f5',
                             borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
                         }}>
-                             <iframe
-                                src={`${cert.preview}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                                title={cert.title}
+                            <object
+                                data={`${cert.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                                type="application/pdf"
                                 style={{
                                     width: '100%',
                                     height: '100%',
                                     border: 'none',
-                                    pointerEvents: 'none',
-                                    transform: 'scale(1)',
-                                    transformOrigin: 'top left',
+                                    pointerEvents: 'none'
                                 }}
-                            />
+                            >
+                                {/* Fallback if object doesn't render */}
+                                <iframe
+                                    src={`${cert.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        border: 'none',
+                                        pointerEvents: 'none'
+                                    }}
+                                    title={cert.title}
+                                />
+                            </object>
                             
                             <div style={{ position: 'absolute', top: '15px', left: '15px', zIndex: 2 }}>
                                 <span className="mono" style={{ 
@@ -123,7 +130,7 @@ export default function Certificates() {
                                     className="interactive mono"
                                     style={{
                                         fontSize: '11px',
-                                        color: '#c084fc', // Purple color matching the goal
+                                        color: '#c084fc',
                                         textDecoration: 'none',
                                         display: 'flex',
                                         alignItems: 'center',
