@@ -47,7 +47,8 @@ export default function Hero() {
                     overflow: 'visible', // HUD pop-outs need this
                     minHeight: '80vh',
                     background: 'rgba(10, 10, 10, 0.7)',
-                    alignContent: 'center'
+                    alignContent: 'flex-start',
+                    paddingTop: 'clamp(2rem, 6vh, 4rem)'
                 }}
             >
                 {/* Floating Particles */}
@@ -273,36 +274,7 @@ export default function Hero() {
                         ))}
                     </div>
 
-                    {/* Neural Log */}
-                    <div style={{ marginTop: '1rem', padding: '0.8rem', background: 'rgba(0,0,0,0.5)', borderRadius: '10px', border: '1px solid rgba(255,85,0,0.2)' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
-                            <span className="mono" style={{ fontSize: '9px', opacity: 0.4 }}>NEURAL_ENGINE_ACTIVE</span>
-                            <div style={{ display: 'flex', gap: '4px' }}>
-                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#00ff00' }} />
-                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#ff5500', animationDelay: '0.2s' }} />
-                                <div className="pulse" style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#00f2ff', animationDelay: '0.4s' }} />
-                            </div>
-                        </div>
-                        <div className="mono" style={{ fontSize: '10px', height: '45px', overflow: 'hidden', opacity: 0.6 }}>
-                            <motion.div
-                                animate={{ y: [-180, 0] }}
-                                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                                style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}
-                            >
-                                {[
-                                    '> VECTORIZING_USER_INPUT',
-                                    '> CROSS_VALIDATION_ACTIVE',
-                                    '> REINFORCEMENT_LEARNING_RUNNING',
-                                    '> MODEL_RECALL: 0.982',
-                                    '> SCRAPING_REAL_TIME_TRENDS',
-                                    '> OPTIMIZING_GRADIENT_DESCENT',
-                                    '> NEURAL_WEIGHTS_INITIALIZED'
-                                ].map((log, i) => (
-                                    <span key={i} style={{ color: i % 3 === 0 ? 'var(--brand-orange)' : i % 3 === 1 ? '#00f2ff' : 'var(--text-main)' }}>{log}</span>
-                                ))}
-                            </motion.div>
-                        </div>
-                    </div>
+
                 </motion.div>
                 </div>
 

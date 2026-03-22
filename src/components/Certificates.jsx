@@ -9,7 +9,7 @@ const certs = [
         title: 'PYTHON PROGRAMMING',
         issuer: 'PROFESSIONAL CERTIFICATION',
         file: '/certs/cert_python.pdf',
-        image: '/certs/Bits and bytes.jpeg', // Using an available image as a high-quality preview
+        preview: '/certs/cert_python.pdf',
         status: 'VERIFIED_RECORD'
     },
     {
@@ -17,7 +17,7 @@ const certs = [
         title: 'FROM DATA TO INSIGHTS',
         issuer: 'ANALYTICS SPECIALIZATION',
         file: '/certs/cert_insights.pdf',
-        image: '/certs/From data to Insights.pdf', // If it were an image, but using a fallback for now
+        preview: '/certs/cert_insights.pdf',
         status: 'SYSTEM_VALIDATED'
     },
     {
@@ -25,10 +25,11 @@ const certs = [
         title: 'PRIVACY & SECURITY',
         issuer: 'CYBER SECURITY SPECIALIZATION',
         file: '/certs/Privacy and Security in Online Social Media.pdf',
-        image: '/certs/peer to peer and local network.jpeg', // Using an available image match
+        preview: '/certs/Privacy and Security in Online Social Media.pdf',
         status: 'SYSTEM_VALIDATED'
     }
 ];
+
 
 export default function Certificates() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -78,19 +79,16 @@ export default function Certificates() {
                             background: '#151515',
                             borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
                         }}>
-                             <img 
-                                src={cert.image} 
-                                alt={cert.title}
-                                style={{ 
-                                    width: '100%', 
-                                    height: '100%', 
-                                    objectFit: 'cover',
-                                    opacity: 0.9,
-                                    transition: 'transform 0.5s ease'
-                                }}
-                                onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    e.target.parentElement.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--brand-orange);background:linear-gradient(135deg, #101010, #202020)"><div style="text-align:center"><div style="font-size:40px;margin-bottom:10px">🏅</div><div class="mono" style="font-size:10px;opacity:0.5">${cert.title}</div></div></div>`;
+                             <iframe
+                                src={`${cert.preview}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                                title={cert.title}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    border: 'none',
+                                    pointerEvents: 'none',
+                                    transform: 'scale(1)',
+                                    transformOrigin: 'top left',
                                 }}
                             />
                             
