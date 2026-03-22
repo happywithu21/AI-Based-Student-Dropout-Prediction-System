@@ -11,7 +11,7 @@ const projects = [
         image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000',
         tech: ['Python', 'Flask', 'React', 'Scikit-Learn'],
         glow: 'rgba(255, 170, 0, 0.4)',
-        link: 'https://github.com/happywithu21/Dropout-System-Working'
+        link: 'https://akshie21-student-dropout-predictor.hf.space/'
     },
     {
         id: '02',
@@ -151,6 +151,8 @@ function ProjectCard({ project, isEven }) {
 
                 <a
                     href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="interactive mono"
                     style={{
                         fontSize: '11px',
