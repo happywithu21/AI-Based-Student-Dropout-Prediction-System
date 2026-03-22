@@ -11,25 +11,25 @@ const projects = [
         image: animeViz,
         tech: ['Python', 'Power BI', 'Scikit-Learn'],
         glow: 'rgba(255, 85, 0, 0.4)',
-        link: '#'
+        link: 'https://github.com/happywithu21/Anime-Recommender'
     },
     {
         id: '02',
-        title: 'CPU SCHEDULER',
-        subtitle: 'High-performance systems optimization tool for simulating and analyzing process scheduling algorithms.',
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000',
-        tech: ['C++', 'Multithreading', 'Linux API'],
+        title: 'YOJANAMITRA',
+        subtitle: 'Smart full-stack platform for Indian citizens to discover and match with eligible government schemes using AI-driven matching.',
+        image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1000',
+        tech: ['FastAPI', 'React', 'PostgreSQL', 'Docker'],
         glow: 'rgba(0, 242, 255, 0.3)',
-        link: '#'
+        link: 'https://github.com/happywithu21/gov-scheme-recommender'
     },
     {
         id: '03',
-        title: 'NEXUS SHOOTER',
-        subtitle: 'Interactive real-time physics simulation and browser-based arcade shooter built with raw Canvas.',
-        image: 'https://images.unsplash.com/photo-1614728263952-84ea206f9c45?auto=format&fit=crop&q=80&w=1000',
-        tech: ['JS', 'Canvas', 'GLSL'],
+        title: 'MENTAL WELLNESS',
+        subtitle: 'Comprehensive platform for mental health assessment, progress tracking, and professional support integration.',
+        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000',
+        tech: ['React', 'Web Health API', 'Canva-Design'],
         glow: 'rgba(192, 132, 252, 0.3)',
-        link: '#'
+        link: 'https://github.com/happywithu21/MENTAL-HEALTH'
     }
 ];
 
