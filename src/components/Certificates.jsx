@@ -5,32 +5,28 @@ import CertificateModal from './CertificateModal';
 
 const certs = [
     {
-        id: '01',
+        id: 'CR-001',
         title: 'PYTHON PROGRAMMING',
         issuer: 'PROFESSIONAL CERTIFICATION',
         file: '/certs/cert_python.pdf',
+        image: '/certs/Bits and bytes.jpeg', // Using an available image as a high-quality preview
         status: 'VERIFIED_RECORD'
     },
     {
-        id: '02',
+        id: 'CR-002',
         title: 'FROM DATA TO INSIGHTS',
         issuer: 'ANALYTICS SPECIALIZATION',
         file: '/certs/cert_insights.pdf',
+        image: '/certs/From data to Insights.pdf', // If it were an image, but using a fallback for now
         status: 'SYSTEM_VALIDATED'
     },
     {
-        id: '03',
-        title: 'DATA STRUCTURES & ALGORITHMS',
-        issuer: 'COMPUTATIONAL LOGIC',
-        file: '/certs/cert_dsa.pdf',
-        status: 'OPTIMAL_PERFORMANCE'
-    },
-    {
-        id: '04',
-        title: 'COMPUTATIONAL THEORY',
-        issuer: 'FINITE AUTOMATA & LANGUAGES',
-        file: '/certs/cert_theory.pdf',
-        status: 'ACADEMIC_EXCELLENCE'
+        id: 'CR-006',
+        title: 'PRIVACY & SECURITY',
+        issuer: 'CYBER SECURITY SPECIALIZATION',
+        file: '/certs/Privacy and Security in Online Social Media.pdf',
+        image: '/certs/peer to peer and local network.jpeg', // Using an available image match
+        status: 'SYSTEM_VALIDATED'
     }
 ];
 
@@ -58,46 +54,93 @@ export default function Certificates() {
                 {certs.map((cert) => (
                     <motion.div
                         key={cert.id}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="data-card glow-purple"
-                        style={{ position: 'relative', overflow: 'hidden', height: '100%' }}
+                        style={{ 
+                            padding: 0, 
+                            overflow: 'hidden', 
+                            borderRadius: '24px',
+                            background: 'rgba(15, 15, 15, 0.4)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            height: '100%'
+                        }}
                     >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
-                            <div style={{ color: 'var(--brand-orange)' }}><Award size={32} strokeWidth={1.5} /></div>
-                            <span className="mono" style={{ fontSize: '10px', opacity: 0.3 }}>ID_0{cert.id}</span>
+                        {/* Certificate Preview Image */}
+                        <div style={{ 
+                            width: '100%', 
+                            height: '240px', 
+                            overflow: 'hidden',
+                            position: 'relative',
+                            background: '#151515',
+                            borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                        }}>
+                             <img 
+                                src={cert.image} 
+                                alt={cert.title}
+                                style={{ 
+                                    width: '100%', 
+                                    height: '100%', 
+                                    objectFit: 'cover',
+                                    opacity: 0.9,
+                                    transition: 'transform 0.5s ease'
+                                }}
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.parentElement.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--brand-orange);background:linear-gradient(135deg, #101010, #202020)"><div style="text-align:center"><div style="font-size:40px;margin-bottom:10px">🏅</div><div class="mono" style="font-size:10px;opacity:0.5">${cert.title}</div></div></div>`;
+                                }}
+                            />
+                            
+                            <div style={{ position: 'absolute', top: '15px', left: '15px', zIndex: 2 }}>
+                                <span className="mono" style={{ 
+                                    fontSize: '9px', 
+                                    padding: '4px 8px', 
+                                    background: 'rgba(0,0,0,0.7)', 
+                                    borderRadius: '4px',
+                                    color: 'var(--brand-orange)',
+                                    border: '1px solid rgba(255,85,0,0.3)'
+                                }}>
+                                    {cert.id}
+                                </span>
+                            </div>
                         </div>
 
-                        <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>{cert.title}</h3>
-                        <p className="mono" style={{ fontSize: '11px', opacity: 0.5, marginBottom: '2rem' }}>{cert.issuer}</p>
+                        {/* Certificate Info Body */}
+                        <div style={{ padding: '1.8rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                            <h3 style={{ fontSize: '1.4rem', fontWeight: 900, marginBottom: '0.6rem', color: '#fff', textTransform: 'uppercase' }}>
+                                {cert.title}
+                            </h3>
+                            <p className="mono" style={{ fontSize: '11px', opacity: 0.4, marginBottom: '1.5rem', letterSpacing: '0.05em' }}>
+                                {cert.issuer}
+                            </p>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2rem' }}>
-                            <CheckCircle size={12} color="#00ff00" />
-                            <span className="mono" style={{ fontSize: '9px', color: '#00ff00' }}>{cert.status.replace('_', ' ')}</span>
+                            <div style={{ marginTop: 'auto' }}>
+                                <a
+                                    href={cert.file}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="interactive mono"
+                                    style={{
+                                        fontSize: '11px',
+                                        color: '#c084fc', // Purple color matching the goal
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px',
+                                        fontWeight: 900,
+                                        width: 'fit-content'
+                                    }}
+                                >
+                                    VIEW CERTIFICATE 
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M7 17l9.2-9.2M17 17V7H7" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-
-                        <a
-                            href={cert.file}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="interactive mono"
-                            style={{
-                                fontSize: '11px',
-                                color: 'var(--text-main)',
-                                textDecoration: 'none',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px',
-                                padding: '12px 16px',
-                                border: '1px solid rgba(238,237,228,0.1)',
-                                background: 'rgba(238,237,228,0.03)'
-                            }}
-                        >
-                            <FileText size={14} />
-                            VIEW PDF
-                        </a>
                     </motion.div>
                 ))}
             </div>

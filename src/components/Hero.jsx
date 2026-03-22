@@ -98,7 +98,7 @@ export default function Hero() {
                 </motion.div>
 
                 {/* Right: Visuals & Technical Metadata Panel */}
-                <div className="hero-right-col">
+                <div className="hero-right-col" style={{ marginTop: '-4rem' }}>
                     
                     {/* Profile Image Highlight: Next-Gen Pop-out Glass HUD */}
                     <motion.div 
