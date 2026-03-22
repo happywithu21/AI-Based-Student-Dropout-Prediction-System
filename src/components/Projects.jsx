@@ -96,16 +96,16 @@ function ProjectCard({ project, isEven }) {
                 backdropFilter: 'blur(12px)',
                 border: '1px solid rgba(255, 255, 255, 0.05)',
                 borderRadius: '32px',
-                padding: 'clamp(1.5rem, 4vw, 3rem)',
+                padding: 'clamp(1rem, 4vw, 3rem)',
                 display: 'flex',
-                flexDirection: (typeof window !== 'undefined' && window.innerWidth < 768) ? 'column' : (isEven ? 'row' : 'row-reverse'),
                 alignItems: 'center',
+                flexDirection: isEven ? 'row' : 'row-reverse',
                 gap: 'clamp(1.5rem, 5vw, 4rem)',
                 position: 'relative',
                 overflow: 'hidden',
                 boxShadow: `0 40px 100px -20px rgba(0,0,0,0.5), 0 0 40px ${project.glow.replace('0.4', '0.05')}`
             }}
-            className="project-horizontal-card"
+            className={`project-horizontal-card mobile-stack`}
         >
             {/* Left/Content Side */}
             <div style={{ flex: 1.2, zIndex: 2 }}>

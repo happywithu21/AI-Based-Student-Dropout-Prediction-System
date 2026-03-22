@@ -42,7 +42,7 @@ export default function Certificates() {
 
             <div style={{ 
                 display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', 
                 gap: '1.5vw', 
                 marginBottom: '4rem',
                 maxWidth: '1200px',
@@ -80,20 +80,23 @@ export default function Certificates() {
                                 data={`${cert.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                                 type="application/pdf"
                                 style={{
-                                    width: '100%',
-                                    height: '100%',
+                                    width: 'calc(100% + 20px)',
+                                    height: 'calc(100% + 20px)',
                                     border: 'none',
-                                    pointerEvents: 'none'
+                                    pointerEvents: 'none',
+                                    overflow: 'hidden'
                                 }}
                             >
                                 {/* Fallback if object doesn't render */}
                                 <iframe
                                     src={`${cert.file}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                                    scrolling="no"
                                     style={{
-                                        width: '100%',
-                                        height: '100%',
+                                        width: 'calc(100% + 20px)',
+                                        height: 'calc(100% + 20px)',
                                         border: 'none',
-                                        pointerEvents: 'none'
+                                        pointerEvents: 'none',
+                                        overflow: 'hidden'
                                     }}
                                     title={cert.title}
                                 />

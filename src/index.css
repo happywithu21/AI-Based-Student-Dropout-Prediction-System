@@ -431,7 +431,11 @@ h1 {
   }
 
   .container {
-    padding: 0 6vw;
+    padding: 0 4vw;
+  }
+
+  .mobile-stack {
+    flex-direction: column !important;
   }
 
   .data-card {
@@ -539,4 +543,46 @@ h1 {
 
 .menu-toggle.open span { background: transparent; }
 .menu-toggle.open span::before { transform: rotate(45deg); }
-.menu-toggle.open span::after { transform: rotate(-45deg); }
+.menu-toggle.open span::after { transform: rotate(-45deg); }
+
+/* Hide scrollbars on embedded PDF previews */
+.data-card object,
+.data-card iframe {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.data-card object::-webkit-scrollbar,
+.data-card iframe::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.contact-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  padding: 10px 0;
+  outline: none;
+  font-size: 14px;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+.contact-input:focus {
+  color: #fff;
+}
+
+.contact-input::placeholder {
+  color: rgba(238, 237, 228, 0.2);
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
