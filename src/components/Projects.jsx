@@ -6,12 +6,12 @@ import animeViz from '../assets/anime_viz.png';
 const projects = [
     {
         id: '01',
-        title: 'ANIME RECOMMENDER',
-        subtitle: 'Tactical anime discovery engine driven by advanced data filtering and collaborative filtering models.',
-        image: animeViz,
-        tech: ['Python', 'Power BI', 'Scikit-Learn'],
-        glow: 'rgba(255, 85, 0, 0.4)',
-        link: 'https://github.com/happywithu21/Anime-Recommender'
+        title: 'AI DROPOUT PREDICTOR',
+        subtitle: 'Advanced early warning system for universities using Random Forest models to identify students at risk of dropout with 92% accuracy.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000',
+        tech: ['Python', 'Flask', 'React', 'Scikit-Learn'],
+        glow: 'rgba(255, 170, 0, 0.4)',
+        link: 'https://github.com/happywithu21/Dropout-System-Working'
     },
     {
         id: '02',
@@ -24,12 +24,12 @@ const projects = [
     },
     {
         id: '03',
-        title: 'MENTAL WELLNESS',
-        subtitle: 'Comprehensive platform for mental health assessment, progress tracking, and professional support integration.',
-        image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000',
-        tech: ['React', 'Web Health API', 'Canva-Design'],
-        glow: 'rgba(192, 132, 252, 0.3)',
-        link: 'https://github.com/happywithu21/MENTAL-HEALTH'
+        title: 'ANIME RECOMMENDER',
+        subtitle: 'Tactical anime discovery engine driven by advanced data filtering and collaborative filtering models.',
+        image: animeViz,
+        tech: ['Python', 'Power BI', 'Scikit-Learn'],
+        glow: 'rgba(255, 85, 0, 0.4)',
+        link: 'https://github.com/happywithu21/Anime-Recommender'
     }
 ];
 
